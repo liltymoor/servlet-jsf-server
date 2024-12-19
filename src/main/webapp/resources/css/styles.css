@@ -1,0 +1,471 @@
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.send-btn {
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: #4c6ef5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.send-btn:hover {
+    background-color: #3b5bdb;
+}
+
+.send-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #4c6ef5;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-info p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #4c6ef5;
+    margin-bottom: 20px;
+}
+
+.block-section {
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #3b5bdb;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #4c6ef5;
+    color: white;
+    width: 100%;
+    position: relative;
+}
+
+.additional-content {
+    background-color: #eef1f7;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    gap: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #4c6ef5;
+    color: white;
+}
+
+#myCanvas {
+    border: 2px solid black;
+}
+
+.coordinate-buttons, .radius-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.coordinate-buttons button, .radius-buttons button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #4c6ef5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.coordinate-buttons button:hover, .radius-buttons button:hover {
+    background-color: #3b5bdb;
+}
+
+.active {
+    background-color: #3b5b60 !important;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    background-color: #4c6ef5;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-info p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #4c6ef5;
+    margin-bottom: 20px;
+}
+
+.centered-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 20px;
+
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.block-section {
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 20px;
+
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #3b5bdb;
+}
+
+#footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #4c6ef5;
+    color: white;
+    width: 100%;
+    position: relative;
+}
+
+.additional-content {
+    background-color: #eef1f7;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.main {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #4c6ef5;
+    color: white;
+}
+
+#myCanvas {
+    border: 2px solid black;
+}
+
+.coordinate-buttons, .radius-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.coordinate-buttons button, .radius-buttons button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #4c6ef5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.coordinate-buttons button:hover, .radius-buttons button:hover {
+    background-color: #3b5bdb;
+}
+
+:root {
+    --clr: #404982;
+}
+
+.mainbtn {
+    position: relative;
+    background: #4c6ef5;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+    padding: 1rem 3rem;
+    transition: 0.2s;
+}
+
+.mainbtn:hover {
+    letter-spacing: 0.2rem;
+    padding: 1.1rem 3.1rem;
+    /* box-shadow: 0 0 35px var(--clr); */
+    animation: box 3s infinite;
+}
+
+.mainbtn::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: #272822;
+}
+
+.mainbtn span {
+    position: relative;
+    z-index: 1;
+}
+.mainbtn i {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+.mainbtn i::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    left: 80%;
+    top: -2px;
+    border: 2px solid var(--clr);
+    background: #272822;
+    transition: 0.2s;
+}
+
+.mainbtn:hover i::before {
+    width: 15px;
+    left: 20%;
+    animation: move 3s infinite;
+}
+
+.mainbtn i::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    left: 20%;
+    bottom: -2px;
+    border: 2px solid var(--clr);
+    background: #272822;
+    transition: 0.2s;
+}
+
+.mainbtn:hover i::after {
+    width: 15px;
+    left: 80%;
+    animation: move 3s infinite;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes box {
+    0% {
+        box-shadow: #27272c;
+    }
+    50% {
+        box-shadow: 0 0 25px var(--clr);
+    }
+    100% {
+        box-shadow: #27272c;
+    }
+}
+
+.time-container {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    border: 1px solid #ddd; /* Граница контейнера */
+    border-radius: 5px; /* Скругление углов */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+.time {
+    margin: 0; /* Убираем отступы */
+    padding: 10px; /* Внутренний отступ */
+    background-color: #fff; /* Фон текста */
+    border-radius: 3px; /* Скругление углов текста */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Тень текста */
+}
+

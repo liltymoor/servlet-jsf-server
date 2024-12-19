@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:h="jakarta.faces.html"
+          xmlns:f="jakarta.faces.core"
+          xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Лабораторная работа №3</title>
+    <h:outputStylesheet name="styles.css" library="css"/>
+</h:head>
+<h:body>
+    <div id="header">
+        <div class="header-content">
+            <div class="header-info">
+                <p>Чельтер Тимур Владимирович</p>
+                <p>413105</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="centered-section">
+            <div class="time-container">
+                <h:outputText id="clock" styleClass="time" value="#{clockBean.currentTime}" style="font-size: 24px;"/>
+                <p:poll interval="5" listener="#{clockBean.updateTime()}" update="clock"/>
+            </div>
+            <h:form>
+                <h:commandButton styleClass="mainbtn" id="submit" action="go2index" value="GO TO INDEX"/>
+            </h:form>
+        </div>
+    </div>
+
+    <div id="footer">
+        <p>&copy; 2024. ITMO Web | Лабораторная работа №3.0 </p>
+    </div>
+</h:body>
+</html>

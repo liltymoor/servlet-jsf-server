@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Лабораторная работа №3</title>
+    <h:outputStylesheet name="styles.css" library="css"/>
+    <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+    <h:outputScript name="js/script.js"/>'
+    <h:outputScript target="head">
+        function redrawCanvas(r) {
+            var rValue = document.getElementById('coordinateForm:r-value').value;
+            console.log(rValue);
+            drawCanvas(r ?? rValue)
+        }
+        $ = jQuery;
+        // Then you can use it
+        $(document).ready(function() {
+            redrawCanvas(#{coordinateBean.r});
+        });
+
+        async function makeDot() {
+            var canvas = document.getElementById('myCanvas');
+            var ctx = canvas.getContext('2d');
+            var x = document.getElementById('coordinateForm:x-value').value;
+            var y = document.getElementById('coordinateForm:y').value;
+            console.log(x);
+            console.log(y);
+
+            const regex = /^[+-]?\d+(\.\d+)?$/;
+
+            if (!regex.test(y))
+                return;
+
+            x = parseFloat(x);
+            y = parseFloat(y);
+
+            if (-1 * y > 5 || y > 3)
+                return;
+
+            const result = await sendDot(x, y);
+            drawDot(
+                ctx,
+                {x: x * 75 + 250, y: -1 * y * 75 + 250},
+                result === "true" ? "green" : "red");
+        }
+
+        async function sendDot(x, y) {
+            const r = document.getElementById('coordinateForm:r-value').value;
+
+            const regex = /^[+-]?\d+(\.\d+)?$/;
+
+            if (!regex.test(r)) {
+
+            }
+
+            //x *= parseFloat(r);
+            //y *= parseFloat(r);
+
+            console.log("dot sended");
+            try {
+            const result = await $.ajax({
+                url: 'addAttempt', // URL вашего сервлета
+                type: 'POST',
+                data: {
+                x: x,
+                y: y,
+                r: r
+                },
+                });
+            updateTable();
+            return result.result;
+            } catch (error) {console.error(error); return null;}
+        }
+    </h:outputScript>
+</h:head>
+<h:body>
+    <div id="header">
+        <div class="header-content">
+            <div class="header-info">
+                <p>Чельтер Тимур Владимирович</p>
+                <p>413105</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="block-section">
+            <canvas id="myCanvas" width="500" height="500"></canvas>
+        </div>
+        <div class="block-section">
+            <h1>Введите координаты и радиус</h1>
+            <h:form id="coordinateForm">
+                <div class="input-group">
+                    <h:outputLabel for="x" value="Координата X:" />
+                    <div class="coordinate-buttons" id="x-buttons">
+                        <h:selectOneRadio id="x" styleClass="x-radio" value="#{coordinateBean.x}">
+                            <f:selectItem itemValue="-2" itemLabel="-2" />
+                            <f:selectItem itemValue="-1.5" itemLabel="-1.5" />
+                            <f:selectItem itemValue="-1" itemLabel="-1" />
+                            <f:selectItem itemValue="-0.5" itemLabel="-0.5" />
+                            <f:selectItem itemValue="0" itemLabel="0" />
+                            <f:selectItem itemValue="0.5" itemLabel="0.5" />
+                            <f:selectItem itemValue="1" itemLabel="1" />
+                            <f:selectItem itemValue="1.5" itemLabel="1.5" />
+                            <f:selectItem itemValue="2" itemLabel="2" />
+                            <p:ajax event="change" update="x-value" />
+                        </h:selectOneRadio>
+                        <h:inputHidden id="x-value" value="#{coordinateBean.x}"/>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <h:outputLabel for="y" value="Координата Y (от -5 до 3):" />
+                    <h:inputText id="y" value="#{coordinateBean.y}" placeholder="Введите Y" required="true"/>
+                    <h:inputHidden id="y-value" value="#{coordinateBean.y}"/>
+                </div>
+
+                <div class="input-group">
+                    <h:outputLabel for="r" value="Радиус R:" />
+                    <div class="radius-buttons" id="r-buttons">
+                        <h:selectOneRadio styleClass="r-radio" id="r" value="#{coordinateBean.r}" valueChangeListener="#{coordinateBean.handleRChange}">
+                            <f:selectItem itemValue="1" itemLabel="1" />
+                            <f:selectItem itemValue="1.5" itemLabel="1.5" />
+                            <f:selectItem itemValue="2" itemLabel="2" />
+                            <f:selectItem itemValue="2.5" itemLabel="2.5" />
+                            <f:selectItem itemValue="3" itemLabel="3" />
+                            <p:ajax event="change" update="r-value" oncomplete="redrawCanvas()" />
+                        </h:selectOneRadio>
+
+                        <h:inputHidden id="r-value" value="#{coordinateBean.r}"/>
+                    </div>
+                </div>
+
+                <p:commandButton styleClass="send-btn" value="Отправить" update="x-value y-value r-value" oncomplete="makeDot()"/>
+            </h:form>
+        </div>
+        <div class="table-section block-section">
+            <h2>Результаты</h2>
+            <h:form id="resultForm">
+                <p:dataTable id="resultTable" value="#{tableBean.attempts}" var="attempt"
+                             paginator="true" rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+                    <p:column headerText="ID">
+                        #{attempt.id}
+                    </p:column>
+                    <p:column headerText="X">
+                        #{attempt.x}
+                    </p:column>
+                    <p:column headerText="Y">
+                        #{attempt.y}
+                    </p:column>
+                    <p:column headerText="R">
+                        #{attempt.r}
+                    </p:column>
+                    <p:column headerText="Result">
+                        #{attempt.result}
+                    </p:column>
+                    <p:column headerText="Created At">
+                        #{attempt.createdAt}
+                    </p:column>
+                    <p:column headerText="Execution Time">
+                        #{attempt.executionTime}
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+    </div>
+    <div class="main">
+        <div class="block-section">
+            <h:form>
+                <h:commandButton class="mainbtn" id="submit" action="go2welcome" value="GO TO WELCOME" />
+            </h:form>
+        </div>
+    </div>
+
+    <div id="footer">
+        <p>&copy; 2024. ITMO Web | Лабораторная работа №3.0 </p>
+    </div>
+    <p:remoteCommand name="updateTable" update="resultForm:resultTable"/>
+</h:body>
+</html>
